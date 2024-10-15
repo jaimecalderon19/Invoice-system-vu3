@@ -14,6 +14,8 @@ This project is built with:
 - For routing: [Vue Router](https://router.vuejs.org/),
 - For form validations: [Vuelidate](https://vuelidate.js.org/).
 
+![screenshot of project](./public/portada.png)
+
 ## Table of contents
 
 - [Overview](#overview)
