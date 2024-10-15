@@ -1,33 +1,86 @@
-# system_invoice_frontend
+# Vue3 System Invoice App
 
-This template should help get you started developing with Vue 3 in Vite.
+This is a version in vue3 whit typescript of [https://github.com/fatihozoglu/vue-invoice-app](https://github.com/fatihozoglu/vue-invoice-app)  You can keep track of your personal invoices with this app. You can create a new invoice, save it as a draft or as pending, mark pending invoices as paid and edit any draft or pending invoices. Also you can filter the invoices by their draft/pending/paid status.
 
-## Recommended IDE Setup
+You can see the [live demo here.](https://fozoglu-vue-invoice-app.surge.sh/)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+I am planning to build this as a Full Stack Web Application by adding a NodeJS/Expressjs server and Mongodb/Postgresql Database.
 
-## Type Support for `.vue` Imports in TS
+This project is built with:
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+- Frontend Framework: [Vuejs](https://vuejs.org/)
+- Created with: [Vue CLI](https://cli.vuejs.org/),
+- For state pinia: [Pinia](https://pinia.vuejs.org/),
+- For routing: [Vue Router](https://router.vuejs.org/),
+- For form validations: [Vuelidate](https://vuelidate.js.org/).
 
-## Customize configuration
+## Table of contents
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+- [Author](#author)
+- [Project Setup](#project-setup)
 
-## Project Setup
+## Overview
 
-```sh
+### The challenge
+
+Users should be able to:
+
+- View the optimal layout for the app depending on their device's screen size
+- See hover states for all interactive elements on the page
+- Create, read, update, and delete invoices
+- Receive form validations when trying to create/edit an invoice
+- Save draft invoices, and mark pending invoices as paid
+- Filter invoices by status (draft/pending/paid)
+- Bonus: I will add Nodejs/Expressjs backend when i finish this project to make it a Full Stack Web App.
+
+### Links
+
+- Solution URL: [Github Link](https://github.com/fatihozoglu/vue-invoice-app)
+- Live Site URL: [Vue Invoice App](https://fozoglu-vue-invoice-app.surge.sh/)
+
+## My process
+
+### Built with
+
+- Semantic HTML5 markup
+- CSS Custom Properties
+- CSS Flexbox
+- CSS Grid
+- Responsive Design
+- [Vuejs](https://vuejs.org/)
+- [Vue CLI](https://cli.vuejs.org/)
+- [Pinia](https://pinia.vuejs.org/)
+- [Vue Router](https://router.vuejs.org/)
+- [Vuelidate](https://vuelidate.js.org/)
+
+## Author Original version
+
+- Portfolio - [Fatih Özoğlu](https://fatihozoglu.github.io/react-portfolio/)
+
+## Project setup
+
+```
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Compiles and hot-reloads for development
 
-```sh
+```
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+### Compiles and minifies for production
 
-```sh
+```
 npm run build
 ```
+
+
+### Customize configuration
+
+See [Configuration Reference](https://cli.vuejs.org/config/).
