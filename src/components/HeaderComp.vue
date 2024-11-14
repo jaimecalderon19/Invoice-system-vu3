@@ -8,7 +8,7 @@
       </router-link>
     </div>
     <div class="user-info">
-      <a href="https://github.com/fatihozoglu" target="_blank">
+      <a href="https://github.com/jaimecalderon19" target="_blank">
         <img
           class="user-photo"
           width="40px"

@@ -171,7 +171,7 @@
 
 <script lang="ts" setup>
 import { storeToRefs } from "pinia";
-import { useInvoiceStore, Invoice } from "../stores";
+import { useInvoiceStore, type Invoice } from "../stores";
 import { computed, ref, watch } from "vue";
 
 // Pinia store
@@ -239,14 +239,14 @@ const update = async () => {
 };
 
 const projectItemTotal = computed(() => {
-  return projectItem.value.quantity * projectItem.value.price
+  return projectItem.value.quantity * (projectItem.value.price ?? 0)
   }
 )
 
 
 const addNewProject = () => {}
 
-const deleteProject = (index) => {}
+const deleteProject = (index: Number) => {}
 
 // Función para guardar la factura como borrador
 const saveAsDraft = async () => {

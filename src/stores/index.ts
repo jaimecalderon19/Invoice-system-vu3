@@ -46,7 +46,7 @@ export const useInvoiceStore = defineStore("invoice", {
     async addInvoice(payload: Omit<Invoice, "invoiceId">) {
       try {
         const clientId = await this.addClient(payload.client);
-        payload.client.clientId = clientId;
+        payload.client.clientId = clientId ?? 0;
         const response = await axios.post<Invoice>(`${BASE_URL}/invoices`, payload);
         this.invoices.push(response.data);
       } catch (error) {
