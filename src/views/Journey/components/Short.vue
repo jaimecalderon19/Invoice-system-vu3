@@ -1,11 +1,13 @@
 <template>
-  <div class="invoice-item" @click="showDetail">
-    <p class="id">#{{ invoice.invoiceId }}</p>
-    <p class="due">Due: {{ invoice.invoiceDue }}</p>
-    <p class="name">{{ invoice.client.name }}</p>
-    <p class="price">
-      $ {{ invoice.totalPrice.toLocaleString("en-US") }}
-    </p>
+  <div class="invoice-item">
+    <p class="id">#{{ journey.id }}</p>
+    <p class="name">{{ journey.fecha }}</p>
+    <p class="name">{{ journey.usuario }}</p>
+    <p class="name">{{ journey.usuarioAprueba }}</p>
+    <p class="name">{{ journey.origen }}</p>
+    <p class="name">{{ journey.destino }}</p>
+    <p class="name">{{ journey.fechaServicio }}</p>
+    <p class="name">{{ journey.horaServicio }}</p>
     <div
       class="status"
       :class="[statusBackground]"
@@ -18,46 +20,73 @@
         class="status-text"
         :class="[statusColor]"
       >
-        {{ invoice.status }}
+        {{ journey.estado }}
       </div>
     </div>
-    <svg
-      color="hsl(252, 94%, 67%)"
-      viewBox="0 0 1024 1024"
-      style="fill: currentcolor; width: 10px; height: 10px"
-    >
-      <path
-        d="M328.4 30l-144.8 144.8 337.2 337.2-337.2 337.2 144.8 144.8 482-482z"
-      ></path>
-    </svg>
+    
+    <div style="flex-basis: 15%; text-align: center;">
+      <DropdownButton 
+        text="Acciones"
+        :options="[
+          { label: 'Asignar vehiculo', value: 1 },
+          { label: 'Anular trayecto', value: 2 }
+        ]"
+        @option-selected="handleOptionSelect"
+      />
+    </div>
+    
   </div>
 </template>
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
-import { computed } from 'vue';
-import { Invoice } from '../stores/index';
+import { computed, ref} from 'vue';
+import {useVehiculeStore} from '@/stores/vehiculeStore';
+import DropdownButton from '@/components/DropdownButton.vue';
+import Modal from '@/components/Modal.vue';
 
+const vehiculeStore = useVehiculeStore();
 const router = useRouter();
 
 const props = defineProps({
-  invoice: Object,
+  journey: Object,
   index: Number,
 })
 
-const invoice = props.invoice as Invoice;
+const emit = defineEmits(["cancel-route"])
 
-// Methods
-const showDetail = () => {
-  router.push({
-    name: "InvoiceDetail",
-    params: { id: invoice.invoiceId, index: props.index },
-  });
+interface DropdownOption {
+    label: string;
+    value: any;
+  }
+
+const handleOptionSelect = (option: DropdownOption) => {
+  if (option.value == 1) {
+    vehiculeStore.toggleMenu();
+  }else if(option.value == 2){
+    emit("cancel-route")
+  }
+
+  console.log('Opción seleccionada:', option);
 };
+
+interface Journey{
+  id: number,
+  fecha: string,
+  usuario: string,
+  usuarioAprueba: string,
+  origen: string,
+  destino: string,
+  fechaServicio: string,
+  horaServicio: string,
+  estado: string,
+};
+
+const journey = props.journey as Journey;
 
 // Computed properties for dynamic class binding
 const statusBackground = computed(() => {
-  switch (invoice.status) {
+  switch (journey.estado) {
     case 'Draft':
       return 'draft-background';
     case 'Pending':
@@ -70,7 +99,7 @@ const statusBackground = computed(() => {
 });
 
 const statusCircle = computed(() => {
-  switch (invoice.status) {
+  switch (journey.estado) {
     case 'Draft':
       return 'circle-draft';
     case 'Pending':
@@ -83,7 +112,7 @@ const statusCircle = computed(() => {
 });
 
 const statusColor = computed(() => {
-  switch (invoice.status) {
+  switch (journey.estado) {
     case 'Draft':
       return 'draft-color';
     case 'Pending':
@@ -118,21 +147,13 @@ const statusColor = computed(() => {
   flex-basis: 5%;
   font-weight: 700;
 }
-.due {
-  flex-basis: 30%;
-  font-size: 12px;
-  text-align: center;
-}
+
 .name {
-  flex-basis: 20%;
+  flex-basis: 15%;
   font-size: 12px;
   text-align: left;
 }
-.price {
-  font-size: 16px;
-  font-weight: 700;
-  flex-basis: 25%;
-}
+
 .status {
   flex-basis: 15%;
   width: 105px;
@@ -152,9 +173,8 @@ const statusColor = computed(() => {
 .status-text {
   font-size: 12px;
 }
-svg {
-  flex-basis: 5%;
-}
+
+
 .draft-background {
   background-color: #292c45;
 }

@@ -1,14 +1,14 @@
 <template>
   <div class="invoices-header">
     <div class="title">
-      <h1 class="title-name">Invoices</h1>
+      <h1 class="title-name">Tracyectos epeciales</h1>
       <p class="title-total">
-        There are {{ filteredInvoices.length }} invoices
+        El total de los {{ filteredInvoices.length }} trayectos
       </p>
     </div>
     <div class="filter" ref="filter">
       <div @click="filterIsOpen = !filterIsOpen" class="filter-btn">
-        Filter By Status
+        Filtrar por estado
       </div>
       <div v-show="filterIsOpen" class="filter-body">
         <div class="filter-item">
@@ -18,7 +18,7 @@
             value="Draft"
             v-model="selectedFilter"
           />
-          <label for="draft">Draft</label>
+          <label for="draft">Confirmado</label>
         </div>
         <div class="filter-item">
           <input
@@ -27,21 +27,12 @@
             value="Pending"
             v-model="selectedFilter"
           />
-          <label for="pending">Pending</label>
-        </div>
-        <div class="filter-item">
-          <input
-            type="checkbox"
-            name="paid"
-            value="Paid"
-            v-model="selectedFilter"
-          />
-          <label for="paid">Paid</label>
+          <label for="pending">Pendiente</label>
         </div>
       </div>
     </div>
     <button class="add-invoice" @click="setMenuIsOpen">
-      New <span class="remove">Invoice</span><span class="symbol">+</span>
+      Nuevo <span class="remove">Trayecto</span><span class="symbol">+</span>
     </button>
   </div>
 </template>
@@ -49,7 +40,7 @@
 <script lang="ts" setup>
 import { ref, watch, onMounted, onBeforeUnmount } from "vue";
 import {storeToRefs} from "pinia"
-import { useInvoiceStore } from "../stores"; // Ajusta la ruta según tu estructura de proyecto
+import { useInvoiceStore } from "../../../stores"; // Ajusta la ruta según tu estructura de proyecto
 
 // Estado local
 const filterIsOpen = ref(false);

@@ -7,6 +7,7 @@
         </div>
       </router-link>
     </div>
+    <SidebarMenu :menuItems="menuItems" />
     <div class="user-info">
       <a href="https://github.com/jaimecalderon19" target="_blank">
         <img
@@ -21,11 +22,44 @@
   </div>
 </template>
 
+<script lang="ts" setup>
+
+import SidebarMenu from '../components/LateralMenu.vue';
+
+const menuItems = [
+  {
+    id: 1,
+    title: 'Cargar Informacion',
+    path: '/information',
+    children: [
+      {
+        id: 3,
+        title: 'Trayectos especiales',
+        path: '/information/specials_path'
+      },
+    ]
+  },
+  {
+    id: 2,
+    title: 'Aprobaciones',
+    path: '/aprobations',
+    children: [
+      {
+        id: 4,
+        title: 'Trayectos especiales',
+        path: '/aprobations/specials_path'
+      },
+    ]
+  },
+  
+];
+</script>
+
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .header {
   height: 100vh;
-  width: 103px;
+  width: 15vw;
   background-color: #1e2139;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
